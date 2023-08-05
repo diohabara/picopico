@@ -1,22 +1,23 @@
-
-import sys
 import base64
+import sys
+
 from cryptography.fernet import Fernet
 
-
-
-usage_msg = "Usage: "+ sys.argv[0] +" (-e/-d) [file]"
-help_msg = usage_msg + "\n" +\
-        "Examples:\n" +\
-        "  To decrypt a file named 'pole.txt', do: " +\
-        "'$ python "+ sys.argv[0] +" -d pole.txt'\n"
-
+usage_msg = "Usage: " + sys.argv[0] + " (-e/-d) [file]"
+help_msg = (
+    usage_msg
+    + "\n"
+    + "Examples:\n"
+    + "  To decrypt a file named 'pole.txt', do: "
+    + "'$ python "
+    + sys.argv[0]
+    + " -d pole.txt'\n"
+)
 
 
 if len(sys.argv) < 2 or len(sys.argv) > 4:
     print(usage_msg)
     sys.exit(1)
-
 
 
 if sys.argv[1] == "-e":
@@ -55,6 +56,5 @@ elif sys.argv[1] == "-h" or sys.argv[1] == "--help":
 
 
 else:
-    print("Unrecognized first argument: "+ sys.argv[1])
+    print("Unrecognized first argument: " + sys.argv[1])
     print("Please use '-e', '-d', or '-h'.")
-
