@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<script src="../../js/bootstrap.min.js"></script>
+<link rel="icon" href="data:,">
+
+    <title>アンケートフォーム</title>
+</head>
+<body>
+    <div class="form-area container-sm mt-5">
+        <h1>アンケートフォーム</h1>
+        <div class="mt-3">
+            <p><span class="text-danger small">*必須項目</span></p>
+        </div>
+
+        <form action="receive.php" method="post" class="mt-4" onsubmit="return validateForm()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">姓:<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="lname" id="lname">
+                        <small id="lname-error" class="text-danger" style="display: none;">姓を入力してください。</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="fname" class="form-label">名:<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="fname" id="fname">
+                        <small id="fname-error" class="text-danger" style="display: none;">名を入力してください。</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">年齢:</label>
+                    <input type="text" class="form-control" name="age" id="age">
+                    <small id="age-error" class="text-danger" style="display: none;">半角数字を入力してください。</small>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">ご意見・ご感想:</label>
+                    <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">送信</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
+<script>
+    function validateForm() {
+        var submit_flg = true;
+        var lname = document.getElementById("lname").value;
+        var fname = document.getElementById("fname").value;
+        var age = document.getElementById("age").value;
+
+        var lnameError = document.getElementById("lname-error");
+        var fnameError = document.getElementById("fname-error");
+        var ageError = document.getElementById("age-error");
+
+
+        lnameError.style.display = "none";
+        fnameError.style.display = "none";
+        ageError.style.display = "none";
+
+        if (lname.trim() === '') {
+            lnameError.style.display = "block";
+            submit_flg = false;
+        }
+
+        if (fname.trim() === '') {
+            fnameError.style.display = "block";
+            submit_flg = false;
+        }
+
+        if (age.trim() !== '') {
+            if (isNaN(age) || !Number.isInteger(Number(age))) {
+                ageError.style.display = "block";
+                submit_flg = false;
+            } else {
+                if (Number(age) < 0) {
+                    ageError.style.display = "block";
+                    submit_flg = false;
+                }
+            }
+        }
+
+        // 全ての必須項目が入力されている場合はtrueを返す
+        return submit_flg;
+    }
+</script>
+</html>
