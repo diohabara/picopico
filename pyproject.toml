@@ -1,0 +1,22 @@
+[project]
+name = "picopico"
+version = "0.1.0"
+description = "Add a short description here"
+authors = [
+    { name = "卍diohabara卍", email = "diohabara@gmail.com" }
+]
+dependencies = [
+    "requests~=2.31.0",
+]
+readme = "README.md"
+requires-python = ">= 3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
